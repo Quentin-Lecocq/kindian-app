@@ -36,6 +36,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "3efdb228-dea4-460e-b29e-d0ecb17af871"
+      }
+    },
+    "owner": "celdama"
   }
 }
