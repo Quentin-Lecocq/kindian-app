@@ -1,4 +1,4 @@
-import { SupabaseUserContext } from '@/contexts/SupabaseUserContext';
+import { SupabaseUserContext } from '@/contexts/supabase-user-context';
 import { useContext } from 'react';
 
 export const useSupabaseUser = () => {
