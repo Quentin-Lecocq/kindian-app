@@ -11,6 +11,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
+import { SupabaseUserProvider } from '@/contexts/SupabaseUserContext';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { ClerkProvider } from '@clerk/clerk-expo';
 
@@ -42,11 +43,13 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
+        <SupabaseUserProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="auto" />
+        </SupabaseUserProvider>
       </ClerkProvider>
     </ThemeProvider>
   );
