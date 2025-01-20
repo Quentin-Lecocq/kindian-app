@@ -10,6 +10,7 @@ export default function Page() {
     <View>
       <SignedIn>
         <Text>Hello {user?.emailAddresses[0].emailAddress}</Text>
+        <Text>Yo can now start using the app</Text>
         <Button title="Sign out" onPress={() => signOut()} />
       </SignedIn>
       <SignedOut>

@@ -29,8 +29,6 @@ export default function RootLayout() {
     throw new Error('EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY is not set');
   }
 
-  // huwnit-4dyhJu-hodnon
-
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
