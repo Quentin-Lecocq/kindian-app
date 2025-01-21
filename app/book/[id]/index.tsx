@@ -1,9 +1,15 @@
 import { useLocalSearchParams } from 'expo-router';
-import { Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 
 const BookDetailScreen = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
-  return <Text>BookDetailScreen : {id}</Text>;
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <Text className="text-4xl font-bold text-center font-bodoni-moda-bold text-black">
+        BookDetailScreen : {id}
+      </Text>
+    </SafeAreaView>
+  );
 };
 
 export default BookDetailScreen;

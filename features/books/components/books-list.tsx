@@ -1,5 +1,11 @@
 import { router } from 'expo-router';
-import { Button, FlatList, Pressable, Text, View } from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+} from 'react-native';
 import { useDeleteBook } from '../hooks/use-delete-book';
 import { Book } from '../types';
 
@@ -25,15 +31,31 @@ const BooksList = ({ books }: BooksListProps) => {
   return (
     <FlatList
       data={books}
+      contentContainerStyle={{
+        padding: 10,
+      }}
       keyExtractor={({ id }) => id}
       renderItem={({ item }) => (
-        <View
-          style={{ flexDirection: 'row', alignItems: 'center', padding: 10 }}
-        >
-          <Pressable onPress={() => handleBookPress(item.id)}>
-            <Text>{item.title}</Text>
-          </Pressable>
-          <Button title={'Delete'} onPress={() => handleDelete(item.id)} />
+        <View style={styles.bookContainer}>
+          <View>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.author}>by {item.author}</Text>
+          </View>
+          <View style={styles.containerButton}>
+            <TouchableHighlight
+              underlayColor={'white'}
+              onPress={() => handleDelete(item.id)}
+            >
+              <View style={styles.button}>
+                <Text style={styles.buttonText}>Delete</Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={() => handleBookPress(item.id)}>
+              <View style={styles.button}>
+                <Text style={styles.buttonText}>Show</Text>
+              </View>
+            </TouchableHighlight>
+          </View>
         </View>
       )}
     />
@@ -41,3 +63,37 @@ const BooksList = ({ books }: BooksListProps) => {
 };
 
 export default BooksList;
+const styles = StyleSheet.create({
+  bookContainer: {
+    borderRadius: 2,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    padding: 10,
+    gap: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    marginBottom: 10,
+    backgroundColor: 'white',
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  author: {
+    fontSize: 12,
+    color: 'gray',
+  },
+  containerButton: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+  button: {
+    backgroundColor: 'black',
+    padding: 4,
+    borderRadius: 2,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 12,
+  },
+});
