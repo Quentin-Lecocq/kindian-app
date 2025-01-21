@@ -1,4 +1,4 @@
-import { useOAuth, useSignIn, useUser } from '@clerk/clerk-expo';
+import { useOAuth, useSignIn } from '@clerk/clerk-expo';
 import * as Linking from 'expo-linking';
 import { Link, useRouter } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
@@ -21,7 +21,6 @@ WebBrowser.maybeCompleteAuthSession();
 
 export default function Page() {
   useWarmUpBrowser();
-  const { user } = useUser();
   const { startOAuthFlow } = useOAuth({ strategy: 'oauth_google' });
   const { signIn, setActive, isLoaded } = useSignIn();
   const router = useRouter();

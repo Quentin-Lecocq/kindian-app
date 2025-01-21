@@ -1,8 +1,8 @@
+import PrimaryButton from '@/components/ui/primary-button';
 import { useSignUp } from '@clerk/clerk-expo';
 import { Link, useRouter } from 'expo-router';
 import * as React from 'react';
 import {
-  Button,
   SafeAreaView,
   Text,
   TextInput,
@@ -72,15 +72,25 @@ export default function SignUpScreen() {
 
   if (pendingVerification) {
     return (
-      <>
-        <Text>Verify your email</Text>
-        <TextInput
-          value={code}
-          placeholder="Enter your verification code"
-          onChangeText={(code) => setCode(code)}
-        />
-        <Button title="Verify" onPress={onVerifyPress} />
-      </>
+      <SafeAreaView className="bg-secondary flex-1">
+        <View className="p-6 mt-8 flex-1 gap-4 justify-between">
+          <Text className="text-2xl font-roboto-mono-bold text-center mt-16">
+            Verify your email
+          </Text>
+          <TextInput
+            className="border px-4 py-6 font-roboto-mono placeholder:text-black"
+            value={code}
+            placeholder="Enter your verification code"
+            onChangeText={(code) => setCode(code)}
+          />
+          <TouchableHighlight
+            onPress={onVerifyPress}
+            className="border-primary px-4 py-6 bg-primary"
+          >
+            <Text className="text-center  font-roboto-mono-medium">Verify</Text>
+          </TouchableHighlight>
+        </View>
+      </SafeAreaView>
     );
   }
 
@@ -142,13 +152,10 @@ export default function SignUpScreen() {
             </View>
           </View>
         </View>
-        <TouchableHighlight
-          onPress={() => {}}
-          className="border-primary px-4 py-6 bg-primary"
-        >
-          <Text className="text-center  font-roboto-mono-medium">Continue</Text>
-        </TouchableHighlight>
+        <PrimaryButton label="Continue" onPress={onSignUpPress} />
       </View>
     </SafeAreaView>
   );
 }
+
+// mnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234;
