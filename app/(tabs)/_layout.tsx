@@ -1,10 +1,9 @@
 import { Redirect, Tabs } from 'expo-router';
+import { Book, Bookmark, Home, User } from 'iconoir-react-native';
 import React from 'react';
-import { Platform, useColorScheme } from 'react-native';
+import { useColorScheme } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
 import { useAuth } from '@clerk/clerk-expo';
 
 export default function TabLayout() {
@@ -18,17 +17,12 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: 'black',
+        tabBarActiveTintColor: '#F57230',
         headerShown: false,
         tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
+        tabBarStyle: {
+          backgroundColor: '#FFEFD7',
+        },
       }}
     >
       <Tabs.Screen
@@ -36,7 +30,7 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
+            <Home width={22} height={22} color={color} />
           ),
         }}
       />
@@ -45,16 +39,25 @@ export default function TabLayout() {
         options={{
           title: 'Books',
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="book.fill" color={color} />
+            <Book width={22} height={22} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="saved"
         options={{
-          title: 'Explore',
+          title: 'Saved',
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+            <Bookmark width={22} height={22} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="account"
+        options={{
+          title: 'Account',
+          tabBarIcon: ({ color }) => (
+            <User width={22} height={22} color={color} />
           ),
         }}
       />
