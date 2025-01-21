@@ -1,14 +1,12 @@
 import { Redirect, Tabs } from 'expo-router';
 import { Book, Bookmark, Home, User } from 'iconoir-react-native';
 import React from 'react';
-import { useColorScheme } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
 import { useAuth } from '@clerk/clerk-expo';
 
 export default function TabLayout() {
   const { isSignedIn } = useAuth();
-  const colorScheme = useColorScheme();
 
   if (!isSignedIn) {
     return <Redirect href="/(auth)/sign-in" />;
@@ -18,6 +16,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: '#F57230',
+        tabBarInactiveTintColor: '#0E0D0A',
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarStyle: {
