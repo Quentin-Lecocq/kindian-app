@@ -9,8 +9,13 @@ export default function Page() {
   return (
     <View>
       <SignedIn>
-        <Text>Hello {user?.emailAddresses[0].emailAddress}</Text>
-        <Text>You can now start using the app</Text>
+        <Text className="text-2xl font-bold text-center">
+          Welcome to Kindian
+        </Text>
+        <Text className="text-lg">
+          Hello {user?.emailAddresses[0].emailAddress}
+        </Text>
+        <Text className="text-lg">You can now start using the app</Text>
         <Button title="Sign out" onPress={() => signOut()} />
       </SignedIn>
       <SignedOut>
