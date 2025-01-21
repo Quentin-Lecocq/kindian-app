@@ -6,7 +6,7 @@ export default function BooksScreen() {
   const { data: books, isLoading } = useGetUserBooks();
 
   return (
-    <SafeAreaView className="p-4">
+    <SafeAreaView className="flex-1 bg-secondary p-4">
       {!isLoading && books?.length ? <BooksList books={books} /> : null}
     </SafeAreaView>
   );
