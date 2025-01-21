@@ -1,9 +1,9 @@
 import { Redirect, Tabs } from 'expo-router';
+import { Book, Bookmark, Home, User } from 'iconoir-react-native';
 import React from 'react';
 import { useColorScheme } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
 import { useAuth } from '@clerk/clerk-expo';
 
 export default function TabLayout() {
@@ -30,7 +30,7 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={22} name="house" color={color} />
+            <Home width={22} height={22} color={color} />
           ),
         }}
       />
@@ -39,7 +39,7 @@ export default function TabLayout() {
         options={{
           title: 'Books',
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={22} name="book" color={color} />
+            <Book width={22} height={22} color={color} />
           ),
         }}
       />
@@ -48,7 +48,7 @@ export default function TabLayout() {
         options={{
           title: 'Saved',
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={22} name="bookmark" color={color} />
+            <Bookmark width={22} height={22} color={color} />
           ),
         }}
       />
@@ -57,7 +57,7 @@ export default function TabLayout() {
         options={{
           title: 'Account',
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={22} name="person" color={color} />
+            <User width={22} height={22} color={color} />
           ),
         }}
       />
