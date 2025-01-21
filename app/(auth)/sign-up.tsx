@@ -1,4 +1,7 @@
 import PrimaryButton from '@/components/ui/primary-button';
+import SecondaryButton from '@/components/ui/secondary-button';
+import { AppleMac, Github, GoogleCircle } from 'iconoir-react-native';
+
 import { useSignUp } from '@clerk/clerk-expo';
 import { Link, useRouter } from 'expo-router';
 import * as React from 'react';
@@ -101,43 +104,43 @@ export default function SignUpScreen() {
           Create an account
         </Text>
         <Text className="text-sm font-roboto-mono-light text-center mt-2">
-          One account, one password, one place to read.
+          One account, one password, one place to read your clippings and books.
         </Text>
       </View>
       <View className="p-6 mt-8 flex-1 gap-4 justify-between">
         <View className="gap-4">
-          <TouchableHighlight className="border px-4 py-6">
-            <View>
-              <Text className="font-roboto-mono">Continue with Google</Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight className="border px-4 py-6">
-            <View>
-              <Text className="font-roboto-mono">Continue with Apple</Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight className="border px-4 py-6">
-            <View>
-              <Text className="font-roboto-mono">Continue with Github</Text>
-            </View>
-          </TouchableHighlight>
+          <SecondaryButton
+            label="Continue with Google"
+            onPress={() => {}}
+            icon={<GoogleCircle />}
+          />
+          <SecondaryButton
+            label="Continue with Github"
+            onPress={() => {}}
+            icon={<Github />}
+          />
+          <SecondaryButton
+            label="Continue with Apple"
+            onPress={() => {}}
+            icon={<AppleMac />}
+          />
           <View className="gap-2 my-6 flex-row items-center">
             <View className="flex-1 mt-1 h-px bg-black" />
-            <Text className="text-center font-roboto-mono">
+            <Text className="text-center font-roboto-mono text-sm">
               or sign up with
             </Text>
             <View className="flex-1 mt-1 h-px bg-black" />
           </View>
           <View className="gap-4">
             <TextInput
-              className="border px-4 py-6 font-roboto-mono placeholder:text-black"
+              className="border px-4 py-6 font-roboto-mono text-sm placeholder:text-black"
               autoCapitalize="none"
               value={emailAddress}
               placeholder="Email address"
               onChangeText={(email) => setEmailAddress(email)}
             />
             <TextInput
-              className="border px-4 py-6 font-roboto-mono placeholder:text-black"
+              className="border px-4 py-6 font-roboto-mono text-sm placeholder:text-black"
               value={password}
               placeholder="Password"
               secureTextEntry={true}

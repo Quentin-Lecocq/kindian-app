@@ -1,4 +1,4 @@
-import { Text, TouchableHighlight } from 'react-native';
+import { Text, TouchableHighlight, View } from 'react-native';
 
 type PrimaryButtonProps = {
   label: string;
@@ -11,7 +11,9 @@ const PrimaryButton = ({ label, onPress }: PrimaryButtonProps) => {
       onPress={onPress}
       className="border-primary px-4 py-6 bg-primary"
     >
-      <Text className="text-center font-roboto-mono-medium">{label}</Text>
+      <View className="flex-row items-center justify-center">
+        <Text className="text-center font-roboto-mono-medium">{label}</Text>
+      </View>
     </TouchableHighlight>
   );
 };

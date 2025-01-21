@@ -1,4 +1,5 @@
 import { tokenCache } from '@/cache';
+import { config } from '@/constants/iconoir';
 import { SupabaseUserProvider } from '@/contexts/supabase-user-context';
 import { ClerkProvider } from '@clerk/clerk-expo';
 import {
@@ -30,6 +31,7 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
+import { IconoirProvider } from 'iconoir-react-native';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 import '../global.css';
@@ -81,15 +83,17 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
         <SupabaseUserProvider>
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen
-              name="book/[id]"
-              options={{ title: 'Book Details' }}
-            />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-          <StatusBar style="auto" />
+          <IconoirProvider iconProps={config}>
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="(tabs)" />
+              <Stack.Screen
+                name="book/[id]"
+                options={{ title: 'Book Details' }}
+              />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+            <StatusBar style="auto" />
+          </IconoirProvider>
         </SupabaseUserProvider>
       </ClerkProvider>
     </QueryClientProvider>
