@@ -44,7 +44,7 @@ export default function BooksScreen() {
           Books
         </Text>
       </View>
-      <View className="pl-6 py-4 gap-4 bg-tertiary">
+      <View className="pl-6 py-6 gap-4 bg-tertiary">
         <FlatList
           showsHorizontalScrollIndicator={false}
           horizontal
@@ -65,7 +65,7 @@ export default function BooksScreen() {
           )}
         />
         <TextInput
-          className="border mr-6 px-4 py-6 font-roboto-mono text-base placeholder:text-black"
+          className="border mr-6 px-4 py-6 font-roboto-mono text-base bg-secondary placeholder:text-black"
           placeholder={`Search in ${currentSearch}`}
         />
       </View>

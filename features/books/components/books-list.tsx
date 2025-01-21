@@ -1,5 +1,4 @@
-import { router } from 'expo-router';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { useDeleteBook } from '../hooks/use-delete-book';
 import { Book } from '../types';
 import BookItem from './book-item';
@@ -8,16 +7,8 @@ type BooksListProps = {
   books: Book[];
 };
 
-// title
-// author
-// id
-// img
-// pages
-// google books links
-
 const BooksList = ({ books }: BooksListProps) => {
   const { mutate: deleteBook } = useDeleteBook();
-  console.log({ books });
 
   const handleDelete = (bookId: string) => {
     deleteBook(bookId, {
@@ -27,38 +18,15 @@ const BooksList = ({ books }: BooksListProps) => {
     });
   };
 
-  const handleBookPress = (bookId: string) => {
-    router.push(`/book/${bookId}`);
-  };
-
   return (
-    <FlatList
-      data={books}
-      keyExtractor={({ id }) => id}
-      renderItem={({ item }) => <BookItem book={item} />}
-      // <View style={styles.bookContainer}>
-      //   <View>
-      //     <Text style={styles.title}>{item.title}</Text>
-      //     <Text style={styles.author}>by {item.author}</Text>
-      //   </View>
-      //   <View style={styles.containerButton}>
-      //     <TouchableHighlight
-      //       underlayColor={'white'}
-      //       onPress={() => handleDelete(item.id)}
-      //     >
-      //       <View style={styles.button}>
-      //         <Text style={styles.buttonText}>Delete</Text>
-      //       </View>
-      //     </TouchableHighlight>
-      //     <TouchableHighlight onPress={() => handleBookPress(item.id)}>
-      //       <View style={styles.button}>
-      //         <Text style={styles.buttonText}>Show</Text>
-      //       </View>
-      //     </TouchableHighlight>
-      //   </View>
-      // </View>
-      // )}
-    />
+    <View className="py-4 px-6">
+      <FlatList
+        data={books}
+        keyExtractor={({ id }) => id}
+        ItemSeparatorComponent={() => <View className="h-6" />}
+        renderItem={({ item }) => <BookItem book={item} />}
+      />
+    </View>
   );
 };
 

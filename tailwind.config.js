@@ -33,6 +33,7 @@ module.exports = {
         'secondary': '#FFEFD7',
         'tertiary': '#F9DC3D',
         'black': '#0E0D0A',
+        'brown': '#5E513D',
       },
     },
   },
