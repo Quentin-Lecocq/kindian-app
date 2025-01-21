@@ -1,7 +1,17 @@
+import PrimaryButton from '@/components/ui/primary-button';
+import SecondaryButton from '@/components/ui/secondary-button';
+import { AppleMac, Github, GoogleCircle } from 'iconoir-react-native';
+
 import { useSignUp } from '@clerk/clerk-expo';
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import * as React from 'react';
-import { Button, Text, TextInput, View } from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  View,
+} from 'react-native';
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -65,36 +75,90 @@ export default function SignUpScreen() {
 
   if (pendingVerification) {
     return (
-      <>
-        <Text>Verify your email</Text>
-        <TextInput
-          value={code}
-          placeholder="Enter your verification code"
-          onChangeText={(code) => setCode(code)}
-        />
-        <Button title="Verify" onPress={onVerifyPress} />
-      </>
+      <SafeAreaView className="bg-secondary flex-1">
+        <View className="p-6 mt-8 flex-1 gap-4 justify-between">
+          <Text className="text-2xl font-roboto-mono-bold text-center mt-16">
+            Verify your email
+          </Text>
+          <TextInput
+            className="border px-4 py-6 font-roboto-mono placeholder:text-black"
+            value={code}
+            placeholder="Enter your verification code"
+            onChangeText={(code) => setCode(code)}
+          />
+          <TouchableHighlight
+            onPress={onVerifyPress}
+            className="border-primary px-4 py-6 bg-primary"
+          >
+            <Text className="text-center  font-roboto-mono-medium">Verify</Text>
+          </TouchableHighlight>
+        </View>
+      </SafeAreaView>
     );
   }
 
   return (
-    <View>
-      <>
-        <Text>Sign up</Text>
-        <TextInput
-          autoCapitalize="none"
-          value={emailAddress}
-          placeholder="Enter email"
-          onChangeText={(email) => setEmailAddress(email)}
-        />
-        <TextInput
-          value={password}
-          placeholder="Enter password"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-        />
-        <Button title="Continue" onPress={onSignUpPress} />
-      </>
-    </View>
+    <SafeAreaView className="bg-secondary flex-1">
+      <View className="w-2/3 mx-auto">
+        <Text className="text-2xl font-roboto-mono-bold text-center mt-16">
+          Create an account
+        </Text>
+        <Text className="text-sm font-roboto-mono-light text-center mt-2">
+          One account, one password, one place to read your clippings and books.
+        </Text>
+      </View>
+      <View className="p-6 mt-8 flex-1 gap-4 justify-between">
+        <View className="gap-4">
+          <SecondaryButton
+            label="Continue with Google"
+            onPress={() => {}}
+            icon={<GoogleCircle />}
+          />
+          <SecondaryButton
+            label="Continue with Github"
+            onPress={() => {}}
+            icon={<Github />}
+          />
+          <SecondaryButton
+            label="Continue with Apple"
+            onPress={() => {}}
+            icon={<AppleMac />}
+          />
+          <View className="gap-2 my-6 flex-row items-center">
+            <View className="flex-1 mt-1 h-px bg-black" />
+            <Text className="text-center font-roboto-mono text-sm">
+              or sign up with
+            </Text>
+            <View className="flex-1 mt-1 h-px bg-black" />
+          </View>
+          <View className="gap-4">
+            <TextInput
+              className="border px-4 py-6 font-roboto-mono text-sm placeholder:text-black"
+              autoCapitalize="none"
+              value={emailAddress}
+              placeholder="Email address"
+              onChangeText={(email) => setEmailAddress(email)}
+            />
+            <TextInput
+              className="border px-4 py-6 font-roboto-mono text-sm placeholder:text-black"
+              value={password}
+              placeholder="Password"
+              secureTextEntry={true}
+              onChangeText={(password) => setPassword(password)}
+            />
+            <View className="flex-row items-center justify-end">
+              <Link href="/sign-in">
+                <Text className="font-roboto-mono text-sm underline">
+                  Already have an account?
+                </Text>
+              </Link>
+            </View>
+          </View>
+        </View>
+        <PrimaryButton label="Continue" onPress={onSignUpPress} />
+      </View>
+    </SafeAreaView>
   );
 }
+
+// gizwaw-ninsuv-faVgo1
