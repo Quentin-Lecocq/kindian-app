@@ -1,9 +1,10 @@
-import { useOAuth, useSignIn } from '@clerk/clerk-expo';
+import { useOAuth, useSignIn, useUser } from '@clerk/clerk-expo';
 import * as Linking from 'expo-linking';
 import { Link, useRouter } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const useWarmUpBrowser = () => {
   React.useEffect(() => {
@@ -20,6 +21,7 @@ WebBrowser.maybeCompleteAuthSession();
 
 export default function Page() {
   useWarmUpBrowser();
+  const { user } = useUser();
   const { startOAuthFlow } = useOAuth({ strategy: 'oauth_google' });
   const { signIn, setActive, isLoaded } = useSignIn();
   const router = useRouter();
@@ -77,7 +79,7 @@ export default function Page() {
   }, []);
 
   return (
-    <View>
+    <SafeAreaView className="bg-secondary flex-1">
       <TextInput
         autoCapitalize="none"
         value={emailAddress}
@@ -97,10 +99,7 @@ export default function Page() {
           <Text>Sign up</Text>
         </Link>
       </View>
-      <Link href="/">
-        <Text>Home</Text>
-      </Link>
       <Button title="Sign in with Google" onPress={onPress} />
-    </View>
+    </SafeAreaView>
   );
 }

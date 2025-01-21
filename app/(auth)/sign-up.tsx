@@ -1,7 +1,14 @@
 import { useSignUp } from '@clerk/clerk-expo';
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import * as React from 'react';
-import { Button, Text, TextInput, View } from 'react-native';
+import {
+  Button,
+  SafeAreaView,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  View,
+} from 'react-native';
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -78,23 +85,70 @@ export default function SignUpScreen() {
   }
 
   return (
-    <View>
-      <>
-        <Text>Sign up</Text>
-        <TextInput
-          autoCapitalize="none"
-          value={emailAddress}
-          placeholder="Enter email"
-          onChangeText={(email) => setEmailAddress(email)}
-        />
-        <TextInput
-          value={password}
-          placeholder="Enter password"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-        />
-        <Button title="Continue" onPress={onSignUpPress} />
-      </>
-    </View>
+    <SafeAreaView className="bg-secondary flex-1">
+      <View className="w-2/3 mx-auto">
+        <Text className="text-2xl font-roboto-mono-bold text-center mt-16">
+          Create an account
+        </Text>
+        <Text className="text-sm font-roboto-mono-light text-center mt-2">
+          One account, one password, one place to read.
+        </Text>
+      </View>
+      <View className="p-6 mt-8 flex-1 gap-4 justify-between">
+        <View className="gap-4">
+          <TouchableHighlight className="border px-4 py-6">
+            <View>
+              <Text className="font-roboto-mono">Continue with Google</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight className="border px-4 py-6">
+            <View>
+              <Text className="font-roboto-mono">Continue with Apple</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight className="border px-4 py-6">
+            <View>
+              <Text className="font-roboto-mono">Continue with Github</Text>
+            </View>
+          </TouchableHighlight>
+          <View className="gap-2 my-6 flex-row items-center">
+            <View className="flex-1 mt-1 h-px bg-black" />
+            <Text className="text-center font-roboto-mono">
+              or sign up with
+            </Text>
+            <View className="flex-1 mt-1 h-px bg-black" />
+          </View>
+          <View className="gap-4">
+            <TextInput
+              className="border px-4 py-6 font-roboto-mono placeholder:text-black"
+              autoCapitalize="none"
+              value={emailAddress}
+              placeholder="Email address"
+              onChangeText={(email) => setEmailAddress(email)}
+            />
+            <TextInput
+              className="border px-4 py-6 font-roboto-mono placeholder:text-black"
+              value={password}
+              placeholder="Password"
+              secureTextEntry={true}
+              onChangeText={(password) => setPassword(password)}
+            />
+            <View className="flex-row items-center justify-end">
+              <Link href="/sign-in">
+                <Text className="font-roboto-mono text-sm underline">
+                  Already have an account?
+                </Text>
+              </Link>
+            </View>
+          </View>
+        </View>
+        <TouchableHighlight
+          onPress={() => {}}
+          className="border-primary px-4 py-6 bg-primary"
+        >
+          <Text className="text-center  font-roboto-mono-medium">Continue</Text>
+        </TouchableHighlight>
+      </View>
+    </SafeAreaView>
   );
 }
