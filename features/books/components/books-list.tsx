@@ -31,9 +31,6 @@ const BooksList = ({ books }: BooksListProps) => {
   return (
     <FlatList
       data={books}
-      contentContainerStyle={{
-        padding: 10,
-      }}
       keyExtractor={({ id }) => id}
       renderItem={({ item }) => (
         <View style={styles.bookContainer}>
