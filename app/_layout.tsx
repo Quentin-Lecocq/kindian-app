@@ -86,10 +86,7 @@ export default function RootLayout() {
           <IconoirProvider iconProps={config}>
             <Stack screenOptions={{ headerShown: false }}>
               <Stack.Screen name="(tabs)" />
-              <Stack.Screen
-                name="book/[id]"
-                options={{ title: 'Book Details' }}
-              />
+              <Stack.Screen name="book/[id]" />
               <Stack.Screen name="+not-found" />
             </Stack>
             <StatusBar style="auto" />
