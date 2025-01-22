@@ -13,6 +13,7 @@ import {
   Trash,
 } from 'iconoir-react-native';
 import {
+  FlatList,
   SafeAreaView,
   ScrollView,
   Text,
@@ -62,12 +63,27 @@ const BookDetailScreen = () => {
             </View>
             <View className="flex-1">
               <Text className="font-dm-mono-medium text-xl">{book?.title}</Text>
+              <Text className="font-dm-mono-light text-xs">
+                {book?.subtitle}
+              </Text>
               <Text className="font-roboto-mono-light text-sm">
                 By:{' '}
                 <Text className="font-roboto-mono text-sm text-brown underline">
                   {book?.author}
                 </Text>
               </Text>
+              <View className="pt-2">
+                <FlatList
+                  data={book?.categories}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  renderItem={({ item }) => (
+                    <Text className="font-roboto-mono-light px-2 py-1 text-xs bg-primary">
+                      {item}
+                    </Text>
+                  )}
+                />
+              </View>
             </View>
           </View>
           <SecondaryButton
@@ -96,6 +112,7 @@ const BookDetailScreen = () => {
           </View>
           <View className="flex-row gap-4">
             <View className="w-fit gap-2">
+              <Text className="font-roboto-mono text-sm">Pages</Text>
               <Text className="font-roboto-mono text-sm">Highlights</Text>
               <Text className="font-roboto-mono  text-sm">Bookmarks</Text>
               <Text className="font-roboto-mono text-sm">Comments</Text>
@@ -103,6 +120,9 @@ const BookDetailScreen = () => {
               <Text className="font-roboto-mono text-sm">Published Date</Text>
             </View>
             <View className="flex-1 gap-2">
+              <Text className="font-roboto-mono-semi-bold text-sm">
+                {book?.page_count || '-'}
+              </Text>
               <Text className="font-roboto-mono-semi-bold text-sm">
                 {book?.highlights_count || '-'}
               </Text>
