@@ -1,3 +1,4 @@
+import BooksList from '@/features/books/components/books-list';
 import { useState } from 'react';
 import {
   FlatList,
@@ -36,10 +37,7 @@ export default function BooksScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-background">
-      <View className="border-t border-b border-muted-foreground flex-row justify-between items-center h-20 px-6">
-        <Text className="text-2xl font-gm-regular text-foreground">Books</Text>
-      </View>
-      <View className="pl-6 py-6 gap-4 bg-border">
+      <View className="pl-6 py-6 gap-4 bg-background border-border border-b">
         <FlatList
           showsHorizontalScrollIndicator={false}
           horizontal
@@ -52,7 +50,7 @@ export default function BooksScreen() {
               className={`border px-3 py-2 ${
                 currentSearch === item.value
                   ? 'bg-foreground border-foreground'
-                  : 'bg-background border-background'
+                  : 'bg-background border-foreground'
               }`}
             >
               <Text
@@ -68,11 +66,11 @@ export default function BooksScreen() {
           )}
         />
         <TextInput
-          className="border mr-6 px-2 py-3 font-gm-regular text-sm bg-background placeholder:text-foreground"
+          className="border mr-6 px-2 py-3 font-gm-regular text-sm bg-background placeholder:text-foreground border-foreground"
           placeholder={`Search in ${currentSearch}`}
         />
       </View>
-      {/* {!isLoading && books?.length ? <BooksList books={books} /> : null} */}
+      <BooksList />
     </SafeAreaView>
   );
 }

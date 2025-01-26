@@ -7,14 +7,9 @@ const AccountScreen = () => {
   const supabaseUser = useSupabaseUser();
 
   return (
-    <SafeAreaView className="flex-1 bg-background">
-      <View className="border-t border-b border-muted-foreground flex-row justify-between items-center h-20 px-6">
-        <Text className="text-2xl font-gm-regular text-foreground">
-          Account
-        </Text>
-      </View>
-
-      <View className="flex-1 p-6">
+    <SafeAreaView className="flex-1 bg-background p-6">
+      <Text className="font-gm-medium text-md text-foreground">Account</Text>
+      <View className="flex-1 mt-4">
         <Text className="text-foreground font-gm-regular text-sm">
           Hello {supabaseUser?.email}
         </Text>
