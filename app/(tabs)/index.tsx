@@ -1,5 +1,10 @@
+import { BLURHASH } from '@/constants/images';
+import { useGetBooks } from '@/features/books/hooks/use-get-books';
+import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
+import { Bookmark } from 'iconoir-react-native';
 import {
+  FlatList,
   SafeAreaView,
   ScrollView,
   Text,
@@ -9,7 +14,7 @@ import {
 
 export default function Home() {
   const router = useRouter();
-  // const { data: books, isLoading } = useGetUserBooks();
+  const { data: books, isLoading } = useGetBooks();
 
   return (
     <SafeAreaView className="flex-1 bg-background">
@@ -27,7 +32,7 @@ export default function Home() {
               </TouchableOpacity>
             </View>
             <View>
-              {/* <FlatList
+              <FlatList
                 horizontal
                 data={books}
                 keyExtractor={({ id }) => id}
@@ -35,9 +40,9 @@ export default function Home() {
                 ItemSeparatorComponent={() => <View className="w-4" />}
                 renderItem={({ item }) => (
                   <View className="flex-1 flex-col items-center">
-                    <View className="border border-black p-1 bg-[#FEEFDB] rounded-sm">
+                    <View className="border border-foreground p-0.5 bg-background">
                       <Image
-                        source={item.image_url}
+                        source={item.imageUrl}
                         style={{ width: 100, height: 150 }}
                         contentFit="fill"
                         contentPosition="center"
@@ -49,14 +54,14 @@ export default function Home() {
                       <Text
                         numberOfLines={2}
                         ellipsizeMode="tail"
-                        className="font-roboto-mono-medium text-sm text-left"
+                        className="text-foreground font-gm-regular text-sm text-left"
                       >
                         {item.title}
                       </Text>
                       <Text
                         numberOfLines={1}
                         ellipsizeMode="tail"
-                        className="font-roboto-mono-light text-xs text-left"
+                        className="font-light text-muted-foreground text-xs text-left"
                       >
                         {item.author}
                       </Text>
@@ -64,7 +69,10 @@ export default function Home() {
                       <View className="flex-row items-center mt-2 justify-between w-full">
                         <View className="flex-row">
                           {[1, 2, 3, 4, 5].map((star) => (
-                            <Text key={star} className="text-primary text-xs">
+                            <Text
+                              key={star}
+                              className="text-foreground text-xs"
+                            >
                               ★
                             </Text>
                           ))}
@@ -73,7 +81,7 @@ export default function Home() {
                           <Bookmark
                             width={16}
                             height={16}
-                            color="#0E0D0A"
+                            color="#FAFAFA"
                             strokeWidth={2}
                           />
                         </TouchableOpacity>
@@ -81,12 +89,12 @@ export default function Home() {
                     </View>
                   </View>
                 )}
-              /> */}
+              />
             </View>
           </View>
         </View>
         <View>
-          <View className="flex-col justify-between">
+          <View className="flex-col justify-between mt-10">
             <View className="flex-row justify-between pr-6 items-center mb-4">
               <Text className="font-gm-medium text-md text-foreground">
                 Recommended for You
@@ -98,17 +106,18 @@ export default function Home() {
               </TouchableOpacity>
             </View>
             <View>
-              {/* <FlatList
+              <FlatList
                 horizontal
+                // TODO: wait for the api to get the recommended books
                 data={books}
                 keyExtractor={({ id }) => id}
                 showsHorizontalScrollIndicator={false}
                 ItemSeparatorComponent={() => <View className="w-4" />}
                 renderItem={({ item }) => (
                   <View className="flex-1 flex-col items-center">
-                    <View className="border border-black p-1 bg-[#FEEFDB] rounded-sm">
+                    <View className="border border-foreground p-0.5 bg-background">
                       <Image
-                        source={item.image_url}
+                        source={item.imageUrl}
                         style={{ width: 100, height: 150 }}
                         contentFit="fill"
                         contentPosition="center"
@@ -120,14 +129,14 @@ export default function Home() {
                       <Text
                         numberOfLines={2}
                         ellipsizeMode="tail"
-                        className="font-roboto-mono-medium text-sm text-left"
+                        className="text-foreground font-gm-regular text-sm text-left"
                       >
                         {item.title}
                       </Text>
                       <Text
                         numberOfLines={1}
                         ellipsizeMode="tail"
-                        className="font-roboto-mono-light text-xs text-left"
+                        className="font-light text-muted-foreground text-xs text-left"
                       >
                         {item.author}
                       </Text>
@@ -135,7 +144,10 @@ export default function Home() {
                       <View className="flex-row items-center mt-2 justify-between w-full">
                         <View className="flex-row">
                           {[1, 2, 3, 4, 5].map((star) => (
-                            <Text key={star} className="text-primary text-xs">
+                            <Text
+                              key={star}
+                              className="text-foreground text-xs"
+                            >
                               ★
                             </Text>
                           ))}
@@ -144,7 +156,7 @@ export default function Home() {
                           <Bookmark
                             width={16}
                             height={16}
-                            color="#0E0D0A"
+                            color="#FAFAFA"
                             strokeWidth={2}
                           />
                         </TouchableOpacity>
@@ -152,7 +164,7 @@ export default function Home() {
                     </View>
                   </View>
                 )}
-              /> */}
+              />
             </View>
           </View>
         </View>
