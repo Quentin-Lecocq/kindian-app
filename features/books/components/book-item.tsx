@@ -1,9 +1,8 @@
-import PrimaryButton from '@/components/ui/primary-button';
 import { BLURHASH } from '@/constants/images';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { SearchEngine, Star } from 'iconoir-react-native';
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { Book } from '../types';
 
 type BookItemProps = {
@@ -18,12 +17,12 @@ const BookItem = ({ book }: BookItemProps) => {
   // Todo: add delete and highlight
 
   return (
-    <View className="border-b mt-4">
+    <View className="border-b border-border mt-4">
       <View className="flex-row gap-4 pb-10">
         <View className="">
-          <View className="border border-black p-1 h-[110px] bg-[#FEEFDB]">
+          <View className="border border-foreground p-0.5 h-[105px] bg-background">
             <Image
-              source={book.image_url}
+              source={book.imageUrl}
               style={{ width: 70, height: 100 }}
               contentFit="fill"
               contentPosition="center"
@@ -32,39 +31,47 @@ const BookItem = ({ book }: BookItemProps) => {
             />
           </View>
           <View>
-            <Text className="font-dm-mono text-xs mt-2">{book.page_count}</Text>
-            <Text className="font-dm-mono text-xs">pages</Text>
+            <Text className="font-dm-mono text-foreground text-xs mt-2">
+              {book.pageCount}
+            </Text>
+            <Text className="font-dm-mono text-xs text-foreground">pages</Text>
           </View>
         </View>
         <View className="flex-1 px-2">
-          <Text className="font-roboto-mono-medium text-lg">{book.title}</Text>
-          <Text className="font-roboto-mono-light text-sm">
+          <Text className="font-gm-semi-bold text-foreground ">
+            {book.title}
+          </Text>
+          <Text className="font-gm-light text-xs text-foreground">
             By{' '}
-            <Text className="font-roboto-mono text-sm text-brown underline">
+            <Text className="text-sm text-muted-foreground underline">
               {book.author}
             </Text>
           </Text>
-          <Text className="font-roboto-mono mt-4 text-xs">
+          <Text className="font-gm-extra-light mt-4 text-foreground text-xs">
             {book.description.substring(0, 220)}...
           </Text>
         </View>
       </View>
       <View>
-        <PrimaryButton
-          label="Show"
-          onPress={() => handleBookPress(book.id)}
-          borderColor="black"
-        />
+        <TouchableOpacity onPress={() => handleBookPress(book.id)}>
+          <View className="flex-row gap-2 py-3 border flex-1 justify-center items-center bg-foreground border-foreground">
+            <Text className="font-gm-medium text-sm text-center text-background">
+              Show
+            </Text>
+          </View>
+        </TouchableOpacity>
         <View className="flex-row gap-2 py-6">
           <View className="flex-row gap-2 flex-1 justify-center items-center">
-            <SearchEngine height={24} width={24} />
-            <Text className="font-roboto-mono-medium text-sm">
+            <SearchEngine color="#FAFAFA" />
+            <Text className="font-gm-medium text-sm text-foreground">
               Read on Google
             </Text>
           </View>
           <View className="flex-row gap-2 flex-1 justify-center items-center">
-            <Star height={24} width={24} />
-            <Text className="font-roboto-mono-medium text-sm">Highlight</Text>
+            <Star color="#FAFAFA" />
+            <Text className="font-gm-medium text-sm text-foreground">
+              Highlight
+            </Text>
           </View>
         </View>
       </View>

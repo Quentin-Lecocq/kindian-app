@@ -89,7 +89,7 @@ export default function Home() {
           <View className="flex-col justify-between">
             <View className="flex-row justify-between pr-6 items-center mb-4">
               <Text className="font-gm-medium text-md text-foreground">
-                Recommended for Youu
+                Recommended for You
               </Text>
               <TouchableOpacity onPress={() => router.push('/books')}>
                 <Text className="font-gm-regular text-muted-foreground underline text-sm">
