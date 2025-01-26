@@ -24,8 +24,11 @@ module.exports = {
         'primary': '#F57230',
         'secondary': '#FFEFD7',
         'tertiary': '#F9DC3D',
-        'black': '#0E0D0A',
-        'brown': '#5E513D',
+        'background': '#0A0A0A',
+        'foreground': '#FAFAFA',
+        'border': '#262626',
+        'muted-foreground': '#a3a3a3',
+        'destructive': '#FF3333'
       },
     },
   },

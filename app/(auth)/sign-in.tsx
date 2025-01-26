@@ -9,7 +9,7 @@ export default function Page() {
   useWarmUpBrowser();
 
   return (
-    <SafeAreaView className="bg-[#0A0A0A] flex-1">
+    <SafeAreaView className="bg-background flex-1">
       <Login mode="sign-in" />
     </SafeAreaView>
   );
