@@ -1,6 +1,5 @@
 import { BLURHASH } from '@/constants/images';
 import { useGetUserBooks } from '@/features/books/hooks/use-get-user-books';
-import { useAuth, useUser } from '@clerk/clerk-expo';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { Bell, Bookmark, Menu } from 'iconoir-react-native';
@@ -16,8 +15,6 @@ import {
 export default function Home() {
   const router = useRouter();
   const { data: books, isLoading } = useGetUserBooks();
-  const { user } = useUser();
-  const { signOut } = useAuth();
 
   return (
     <SafeAreaView className="flex-1 bg-secondary">

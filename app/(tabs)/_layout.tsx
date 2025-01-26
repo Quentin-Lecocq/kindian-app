@@ -1,16 +1,13 @@
-import { Redirect, Tabs } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { Book, Bookmark, Home, User } from 'iconoir-react-native';
 import React from 'react';
 
 import { HapticTab } from '@/components/HapticTab';
-import { useAuth } from '@clerk/clerk-expo';
 
 export default function TabLayout() {
-  const { isSignedIn } = useAuth();
-
-  if (!isSignedIn) {
-    return <Redirect href="/(auth)/sign-in" />;
-  }
+  // if (!isSignedIn) {
+  //   return <Redirect href="/(auth)/sign-in" />;
+  // }
 
   return (
     <Tabs

@@ -1,7 +1,5 @@
-import { tokenCache } from '@/cache';
 import { config } from '@/constants/iconoir';
 import { SupabaseUserProvider } from '@/contexts/supabase-user-context';
-import { ClerkProvider } from '@clerk/clerk-expo';
 import {
   BodoniModa_400Regular,
   BodoniModa_500Medium,
@@ -63,12 +61,6 @@ export default function RootLayout() {
     'DM-Mono-Medium-Italic': DMMono_500Medium_Italic,
   });
 
-  const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
-
-  if (!publishableKey) {
-    throw new Error('EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY is not set');
-  }
-
   useEffect(() => {
     if (loaded || error) {
       SplashScreen.hideAsync();
@@ -81,18 +73,16 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
-        <SupabaseUserProvider>
-          <IconoirProvider iconProps={config}>
-            <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="(tabs)" />
-              <Stack.Screen name="book/[id]" />
-              <Stack.Screen name="+not-found" />
-            </Stack>
-            <StatusBar style="auto" />
-          </IconoirProvider>
-        </SupabaseUserProvider>
-      </ClerkProvider>
+      <SupabaseUserProvider>
+        <IconoirProvider iconProps={config}>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="book/[id]" />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="auto" />
+        </IconoirProvider>
+      </SupabaseUserProvider>
     </QueryClientProvider>
   );
 }
