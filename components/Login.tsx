@@ -87,10 +87,10 @@ const Login = ({ mode }: LoginProps) => {
   return (
     <View className="flex-1 mx-auto">
       <View>
-        <Text className="text-2xl font-gm-bold text-[#FAFAFA] text-center mt-16 font-black">
+        <Text className="text-2xl font-gm-bold text-foreground text-center mt-16">
           {mode === 'sign-in' ? 'Sign in' : 'Sign up'}
         </Text>
-        <Text className="text-sm font-gm-light text-center text-neutral-400 mt-2">
+        <Text className="text-sm font-gm-light text-center text-muted-foreground mt-2">
           One account, one password, one place to read your clippings and books.
         </Text>
       </View>
@@ -98,7 +98,7 @@ const Login = ({ mode }: LoginProps) => {
         <View className="gap-4">
           <View className="gap-4">
             <TextInput
-              className="px-2 py-2 border font-gm-regular border-[#262626] text-sm placeholder:text-neutral-400"
+              className="px-2 py-2 border font-gm-regular border-border text-sm placeholder:text-muted-foreground"
               autoCapitalize="none"
               autoCorrect={false}
               value={emailAddress}
@@ -106,28 +106,28 @@ const Login = ({ mode }: LoginProps) => {
               onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
             />
             <TouchableHighlight>
-              <View className="flex-row gap-2 justify-center items-center border-[#262626] border px-1 py-2 bg-[#FAFAFA]">
-                <Text className="font-gm-medium text-sm text-[#171717]">
+              <View className="flex-row gap-2 justify-center items-center border-border border px-1 py-2 bg-foreground">
+                <Text className="font-gm-medium text-sm text-background">
                   Send magic link
                 </Text>
               </View>
             </TouchableHighlight>
           </View>
           <View className="gap-2 my-6 flex-row items-center">
-            <View className="flex-1 mt-1 h-px bg-[#262626]" />
-            <Text className="text-center font-gm-light text-sm text-neutral-400">
+            <View className="flex-1 mt-1 h-px bg-border" />
+            <Text className="text-center font-gm-light text-sm text-muted-foreground">
               OR CONTINUE WITH
             </Text>
-            <View className="flex-1 mt-1 h-px bg-[#262626]" />
+            <View className="flex-1 mt-1 h-px bg-border" />
           </View>
           <View className="flex-row gap-2">
             <TouchableHighlight
               className="flex-1"
               onPress={() => performOAuth('github')}
             >
-              <View className="flex-row gap-2 justify-center items-center border-[#262626] border px-1 py-2">
+              <View className="flex-row gap-2 justify-center items-center border-border border px-1 py-2">
                 <Github color="#FAFAFA" />
-                <Text className="font-gm-regular text-[#FAFAFA] text-sm">
+                <Text className="font-gm-regular text-foreground text-sm">
                   Github
                 </Text>
               </View>
@@ -136,9 +136,9 @@ const Login = ({ mode }: LoginProps) => {
               className="flex-1"
               onPress={() => performOAuth('google')}
             >
-              <View className="flex-row gap-2 justify-center items-center border-[#262626] border px-1 py-2">
+              <View className="flex-row gap-2 justify-center items-center border-border border px-1 py-2">
                 <GoogleCircle color="#FAFAFA" />
-                <Text className="font-gm-regular text-[#FAFAFA] text-sm">
+                <Text className="font-gm-regular text-foreground text-sm">
                   Google
                 </Text>
               </View>
@@ -146,13 +146,13 @@ const Login = ({ mode }: LoginProps) => {
           </View>
         </View>
         <View className="flex-row items-center justify-center gap-1">
-          <Text className="font-gm-light text-sm text-neutral-400">
+          <Text className="font-gm-light text-sm text-muted-foreground">
             {mode === 'sign-in'
               ? 'New to Kindian?'
               : 'Already have an account?'}
           </Text>
           <Link href={mode === 'sign-in' ? '/sign-up' : '/sign-in'}>
-            <Text className="font-gm-regular text-sm underline text-[#FAFAFA]">
+            <Text className="font-gm-regular text-sm underline text-foreground">
               {mode === 'sign-in' ? 'Sign up' : 'Sign in'}
             </Text>
           </Link>
