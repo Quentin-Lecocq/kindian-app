@@ -28,8 +28,8 @@ export default function Home() {
         </View>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View className="p-6 bg-muted-foreground">
-          <Text className="text-xl text-center font-gm-light text-background">
+        <View className="p-6 bg-border">
+          <Text className="text-lg text-center font-gm-light text-foreground">
             Read Your Highlights Anywhere. Anytime.
           </Text>
         </View>

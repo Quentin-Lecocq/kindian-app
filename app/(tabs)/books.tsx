@@ -39,7 +39,7 @@ export default function BooksScreen() {
       <View className="border-t border-b border-muted-foreground flex-row justify-between items-center h-20 px-6">
         <Text className="text-2xl font-gm-regular text-foreground">Books</Text>
       </View>
-      <View className="pl-6 py-6 gap-4 bg-muted-foreground">
+      <View className="pl-6 py-6 gap-4 bg-border">
         <FlatList
           showsHorizontalScrollIndicator={false}
           horizontal
@@ -52,7 +52,7 @@ export default function BooksScreen() {
               className={`border px-3 py-2 ${
                 currentSearch === item.value
                   ? 'bg-foreground border-foreground'
-                  : 'bg-background border-muted-foreground'
+                  : 'bg-background border-background'
               }`}
             >
               <Text
