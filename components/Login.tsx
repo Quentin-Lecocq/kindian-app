@@ -85,12 +85,12 @@ const Login = ({ mode }: LoginProps) => {
     }
   };
   return (
-    <View className="flex-1">
-      <View className="">
-        <Text className="text-2xl font-roboto-mono-bold text-[#FAFAFA] text-center mt-16">
+    <View className="flex-1 mx-auto">
+      <View>
+        <Text className="text-2xl font-gm-bold text-[#FAFAFA] text-center mt-16 font-black">
           {mode === 'sign-in' ? 'Sign in' : 'Sign up'}
         </Text>
-        <Text className="text-sm font-roboto-mono-light text-center text-neutral-400 mt-2">
+        <Text className="text-sm font-gm-light text-center text-neutral-400 mt-2">
           One account, one password, one place to read your clippings and books.
         </Text>
       </View>
@@ -98,15 +98,16 @@ const Login = ({ mode }: LoginProps) => {
         <View className="gap-4">
           <View className="gap-4">
             <TextInput
-              className="px-2 py-2 border font-roboto-mono border-[#262626] text-sm placeholder:text-neutral-400"
+              className="px-2 py-2 border font-gm-regular border-[#262626] text-sm placeholder:text-neutral-400"
               autoCapitalize="none"
+              autoCorrect={false}
               value={emailAddress}
-              placeholder="Email address"
+              placeholder="Email"
               onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
             />
             <TouchableHighlight>
               <View className="flex-row gap-2 justify-center items-center border-[#262626] border px-1 py-2 bg-[#FAFAFA]">
-                <Text className="font-roboto-mono text-sm text-[#171717]">
+                <Text className="font-gm-medium text-sm text-[#171717]">
                   Send magic link
                 </Text>
               </View>
@@ -114,7 +115,7 @@ const Login = ({ mode }: LoginProps) => {
           </View>
           <View className="gap-2 my-6 flex-row items-center">
             <View className="flex-1 mt-1 h-px bg-[#262626]" />
-            <Text className="text-center font-roboto-mono text-sm text-neutral-400">
+            <Text className="text-center font-gm-light text-sm text-neutral-400">
               OR CONTINUE WITH
             </Text>
             <View className="flex-1 mt-1 h-px bg-[#262626]" />
@@ -122,36 +123,36 @@ const Login = ({ mode }: LoginProps) => {
           <View className="flex-row gap-2">
             <TouchableHighlight
               className="flex-1"
-              onPress={() => performOAuth('google')}
+              onPress={() => performOAuth('github')}
             >
               <View className="flex-row gap-2 justify-center items-center border-[#262626] border px-1 py-2">
-                <GoogleCircle color="#FAFAFA" />
-                <Text className="font-roboto-mono-medium text-[#FAFAFA] text-sm">
-                  Google
+                <Github color="#FAFAFA" />
+                <Text className="font-gm-regular text-[#FAFAFA] text-sm">
+                  Github
                 </Text>
               </View>
             </TouchableHighlight>
             <TouchableHighlight
               className="flex-1"
-              onPress={() => performOAuth('github')}
+              onPress={() => performOAuth('google')}
             >
               <View className="flex-row gap-2 justify-center items-center border-[#262626] border px-1 py-2">
-                <Github color="#FAFAFA" />
-                <Text className="font-roboto-mono-medium text-[#FAFAFA] text-sm">
-                  Github
+                <GoogleCircle color="#FAFAFA" />
+                <Text className="font-gm-regular text-[#FAFAFA] text-sm">
+                  Google
                 </Text>
               </View>
             </TouchableHighlight>
           </View>
         </View>
         <View className="flex-row items-center justify-center gap-1">
-          <Text className="font-roboto-mono text-sm text-neutral-400">
+          <Text className="font-gm-light text-sm text-neutral-400">
             {mode === 'sign-in'
               ? 'New to Kindian?'
               : 'Already have an account?'}
           </Text>
           <Link href={mode === 'sign-in' ? '/sign-up' : '/sign-in'}>
-            <Text className="font-roboto-mono text-sm underline text-[#FAFAFA]">
+            <Text className="font-gm-regular text-sm underline text-[#FAFAFA]">
               {mode === 'sign-in' ? 'Sign up' : 'Sign in'}
             </Text>
           </Link>
