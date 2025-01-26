@@ -1,10 +1,6 @@
-import { BLURHASH } from '@/constants/images';
-import { useGetUserBooks } from '@/features/books/hooks/use-get-user-books';
-import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { Bell, Bookmark, Menu } from 'iconoir-react-native';
+import { Bell, Menu } from 'iconoir-react-native';
 import {
-  FlatList,
   SafeAreaView,
   ScrollView,
   Text,
@@ -14,7 +10,7 @@ import {
 
 export default function Home() {
   const router = useRouter();
-  const { data: books, isLoading } = useGetUserBooks();
+  // const { data: books, isLoading } = useGetUserBooks();
 
   return (
     <SafeAreaView className="flex-1 bg-secondary">
@@ -48,7 +44,7 @@ export default function Home() {
               </TouchableOpacity>
             </View>
             <View>
-              <FlatList
+              {/* <FlatList
                 horizontal
                 data={books}
                 keyExtractor={({ id }) => id}
@@ -102,7 +98,7 @@ export default function Home() {
                     </View>
                   </View>
                 )}
-              />
+              /> */}
             </View>
           </View>
         </View>
@@ -119,7 +115,7 @@ export default function Home() {
               </TouchableOpacity>
             </View>
             <View>
-              <FlatList
+              {/* <FlatList
                 horizontal
                 data={books}
                 keyExtractor={({ id }) => id}
@@ -173,7 +169,7 @@ export default function Home() {
                     </View>
                   </View>
                 )}
-              />
+              /> */}
             </View>
           </View>
         </View>

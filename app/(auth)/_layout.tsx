@@ -1,9 +1,12 @@
-import { Stack } from 'expo-router';
+import useSupabaseUser from '@/hooks/useSupabaseUser';
+import { Redirect, Stack } from 'expo-router';
 
 export default function AuthRoutesLayout() {
-  // if (isSignedIn) {
-  //   return <Redirect href="/(tabs)" />;
-  // }
+  const supabaseUser = useSupabaseUser();
+
+  if (supabaseUser) {
+    return <Redirect href="/(tabs)" />;
+  }
 
   return <Stack screenOptions={{ headerShown: false }} />;
 }
