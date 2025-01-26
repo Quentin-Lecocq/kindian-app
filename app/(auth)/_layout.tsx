@@ -1,5 +1,6 @@
 import useSupabaseUser from '@/hooks/useSupabaseUser';
 import { Redirect, Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
 export default function AuthRoutesLayout() {
   const supabaseUser = useSupabaseUser();
@@ -8,5 +9,10 @@ export default function AuthRoutesLayout() {
     return <Redirect href="/(tabs)" />;
   }
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <>
+      <StatusBar style="inverted" />
+      <Stack screenOptions={{ headerShown: false }} />
+    </>
+  );
 }
