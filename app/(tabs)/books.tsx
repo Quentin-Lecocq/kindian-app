@@ -1,5 +1,3 @@
-import BooksList from '@/features/books/components/books-list';
-import { useGetUserBooks } from '@/features/books/hooks/use-get-user-books';
 import { useState } from 'react';
 import {
   FlatList,
@@ -35,7 +33,6 @@ const fakeSearchItems = [
 
 export default function BooksScreen() {
   const [currentSearch, setCurrentSearch] = useState('Titles');
-  const { data: books, isLoading } = useGetUserBooks();
 
   return (
     <SafeAreaView className="flex-1 bg-secondary">
@@ -69,7 +66,7 @@ export default function BooksScreen() {
           placeholder={`Search in ${currentSearch}`}
         />
       </View>
-      {!isLoading && books?.length ? <BooksList books={books} /> : null}
+      {/* {!isLoading && books?.length ? <BooksList books={books} /> : null} */}
     </SafeAreaView>
   );
 }

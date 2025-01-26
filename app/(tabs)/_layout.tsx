@@ -1,14 +1,37 @@
 import { Redirect, Tabs } from 'expo-router';
 import { Book, Bookmark, Home, User } from 'iconoir-react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { HapticTab } from '@/components/HapticTab';
-import { useAuth } from '@clerk/clerk-expo';
+import { supabase } from '@/utils/supabase';
+import { Session } from '@supabase/supabase-js';
 
 export default function TabLayout() {
-  const { isSignedIn } = useAuth();
+  const [session, setSession] = useState<Session | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!isSignedIn) {
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setLoading(false);
+    });
+
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+      }
+    );
+
+    return () => {
+      authListener?.subscription.unsubscribe();
+    };
+  }, []);
+
+  if (loading) {
+    return null;
+  }
+
+  if (!session) {
     return <Redirect href="/(auth)/sign-in" />;
   }
 

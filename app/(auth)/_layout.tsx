@@ -1,12 +1,18 @@
-import { useAuth } from '@clerk/clerk-expo';
+import useSupabaseUser from '@/hooks/useSupabaseUser';
 import { Redirect, Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
 export default function AuthRoutesLayout() {
-  const { isSignedIn } = useAuth();
+  const supabaseUser = useSupabaseUser();
 
-  if (isSignedIn) {
+  if (supabaseUser) {
     return <Redirect href="/(tabs)" />;
   }
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <>
+      <StatusBar style="inverted" />
+      <Stack screenOptions={{ headerShown: false }} />
+    </>
+  );
 }
