@@ -113,7 +113,7 @@ export default function Home() {
           <View className="flex-col justify-between pl-6 py-4">
             <View className="flex-row justify-between pr-6 items-center mb-4">
               <Text className="font-dm-mono-medium text-lg">
-                Recommended for You
+                Recommended for Youu
               </Text>
               <TouchableOpacity onPress={() => router.push('/books')}>
                 <Text className="font-roboto-mono-medium text-brown underline text-sm">
