@@ -1,5 +1,4 @@
 import { useRouter } from 'expo-router';
-import { Bell, Menu } from 'iconoir-react-native';
 import {
   SafeAreaView,
   ScrollView,
@@ -14,27 +13,9 @@ export default function Home() {
 
   return (
     <SafeAreaView className="flex-1 bg-background">
-      <View className="border-t border-b flex-row justify-between border-muted-foreground items-center h-20">
-        <View className="border-r border-muted-foreground h-full items-center justify-center flex-row w-20">
-          <Menu width={22} height={22} color="#FAFAFA" />
-        </View>
+      <ScrollView showsVerticalScrollIndicator={false} className="p-6">
         <View>
-          <Text className="text-3xl font-gm-regular text-foreground">
-            KINDIAN
-          </Text>
-        </View>
-        <View className="border-l border-muted-foreground h-full items-center justify-center flex-row w-20">
-          <Bell width={22} height={22} color="#FAFAFA" />
-        </View>
-      </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View className="p-6 bg-border">
-          <Text className="text-lg text-center font-gm-light text-foreground">
-            Read Your Highlights Anywhere. Anytime.
-          </Text>
-        </View>
-        <View>
-          <View className="flex-col justify-between pl-6 py-4">
+          <View className="flex-col justify-between">
             <View className="flex-row justify-between pr-6 mb-4 items-center">
               <Text className="font-gm-medium text-md text-foreground">
                 Your Books
@@ -105,7 +86,7 @@ export default function Home() {
           </View>
         </View>
         <View>
-          <View className="flex-col justify-between pl-6 py-4">
+          <View className="flex-col justify-between">
             <View className="flex-row justify-between pr-6 items-center mb-4">
               <Text className="font-gm-medium text-md text-foreground">
                 Recommended for Youu
