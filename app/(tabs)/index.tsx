@@ -13,32 +13,34 @@ export default function Home() {
   // const { data: books, isLoading } = useGetUserBooks();
 
   return (
-    <SafeAreaView className="flex-1 bg-secondary">
-      <View className="border flex-row justify-between items-center h-20">
-        <View className="border-r h-full items-center justify-center flex-row w-20">
-          <Menu width={22} height={22} strokeWidth={2} />
+    <SafeAreaView className="flex-1 bg-background">
+      <View className="border-t border-b flex-row justify-between border-muted-foreground items-center h-20">
+        <View className="border-r border-muted-foreground h-full items-center justify-center flex-row w-20">
+          <Menu width={22} height={22} color="#FAFAFA" />
         </View>
-        <View className="mt-3">
-          <Text className="text-3xl font-bold font-bodoni-moda-bold text-black">
+        <View>
+          <Text className="text-3xl font-gm-regular text-foreground">
             KINDIAN
           </Text>
         </View>
-        <View className="border-l h-full items-center justify-center flex-row w-20">
-          <Bell width={22} height={22} strokeWidth={2} />
+        <View className="border-l border-muted-foreground h-full items-center justify-center flex-row w-20">
+          <Bell width={22} height={22} color="#FAFAFA" />
         </View>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View className="p-6 bg-tertiary">
-          <Text className="text-2xl text-center font-roboto-mono-medium text-black">
+        <View className="p-6 bg-muted-foreground">
+          <Text className="text-xl text-center font-gm-light text-background">
             Read Your Highlights Anywhere. Anytime.
           </Text>
         </View>
         <View>
           <View className="flex-col justify-between pl-6 py-4">
             <View className="flex-row justify-between pr-6 mb-4 items-center">
-              <Text className="font-dm-mono-medium text-lg">Your Books</Text>
+              <Text className="font-gm-medium text-md text-foreground">
+                Your Books
+              </Text>
               <TouchableOpacity onPress={() => router.push('/books')}>
-                <Text className="font-roboto-mono-medium text-brown underline text-sm">
+                <Text className="font-gm-regular text-muted-foreground underline text-sm">
                   more
                 </Text>
               </TouchableOpacity>
@@ -105,11 +107,11 @@ export default function Home() {
         <View>
           <View className="flex-col justify-between pl-6 py-4">
             <View className="flex-row justify-between pr-6 items-center mb-4">
-              <Text className="font-dm-mono-medium text-lg">
+              <Text className="font-gm-medium text-md text-foreground">
                 Recommended for Youu
               </Text>
               <TouchableOpacity onPress={() => router.push('/books')}>
-                <Text className="font-roboto-mono-medium text-brown underline text-sm">
+                <Text className="font-gm-regular text-muted-foreground underline text-sm">
                   more
                 </Text>
               </TouchableOpacity>
