@@ -47,7 +47,7 @@ export default function RootLayout() {
             <Stack.Screen name="book/[id]" />
             <Stack.Screen name="+not-found" />
           </Stack>
-          <StatusBar style="auto" />
+          <StatusBar style="light" />
         </IconoirProvider>
       </SupabaseUserProvider>
     </QueryClientProvider>

@@ -35,13 +35,11 @@ export default function BooksScreen() {
   const [currentSearch, setCurrentSearch] = useState('Titles');
 
   return (
-    <SafeAreaView className="flex-1 bg-secondary">
-      <View className="border flex-row justify-between items-center h-20 px-6">
-        <Text className="text-3xl font-bold font-roboto-mono-bold text-black">
-          Books
-        </Text>
+    <SafeAreaView className="flex-1 bg-background">
+      <View className="border-t border-b border-muted-foreground flex-row justify-between items-center h-20 px-6">
+        <Text className="text-2xl font-gm-regular text-foreground">Books</Text>
       </View>
-      <View className="pl-6 py-6 gap-4 bg-tertiary">
+      <View className="pl-6 py-6 gap-4 bg-border">
         <FlatList
           showsHorizontalScrollIndicator={false}
           horizontal
@@ -53,16 +51,24 @@ export default function BooksScreen() {
               onPress={() => setCurrentSearch(item.value)}
               className={`border px-3 py-2 ${
                 currentSearch === item.value
-                  ? 'bg-primary border-primary'
-                  : 'bg-secondary'
+                  ? 'bg-foreground border-foreground'
+                  : 'bg-background border-background'
               }`}
             >
-              <Text className="font-roboto-mono text-sm">{item.value}</Text>
+              <Text
+                className={`font-gm-regular text-xs ${
+                  currentSearch === item.value
+                    ? 'text-background'
+                    : 'text-foreground'
+                }`}
+              >
+                {item.value}
+              </Text>
             </TouchableOpacity>
           )}
         />
         <TextInput
-          className="border mr-6 px-4 py-6 font-roboto-mono text-base bg-secondary placeholder:text-black"
+          className="border mr-6 px-2 py-3 font-gm-regular text-sm bg-background placeholder:text-foreground"
           placeholder={`Search in ${currentSearch}`}
         />
       </View>
