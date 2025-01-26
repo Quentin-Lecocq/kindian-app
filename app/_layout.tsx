@@ -1,16 +1,5 @@
 import { config } from '@/constants/iconoir';
 import { SupabaseUserProvider } from '@/contexts/supabase-user-context';
-// import {
-//   GeistMono_100Thin,
-//   GeistMono_200ExtraLight,
-//   GeistMono_300Light,
-//   GeistMono_400Regular,
-//   GeistMono_500Medium,
-//   GeistMono_600SemiBold,
-//   GeistMono_700Bold,
-//   GeistMono_800ExtraBold,
-//   GeistMono_900Black,
-// } from '@expo-google-fonts/geist-mono';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
@@ -28,15 +17,15 @@ const queryClient = new QueryClient();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    // 'geist-mono-thin': GeistMono_100Thin,
-    // 'geist-mono-extra-light': GeistMono_200ExtraLight,
-    // 'geist-mono-light': GeistMono_300Light,
-    // 'geist-mono': GeistMono_400Regular,
-    // 'geist-mono-medium': GeistMono_500Medium,
-    // 'geist-mono-semi-bold': GeistMono_600SemiBold,
-    // 'geist-mono-bold': GeistMono_700Bold,
-    // 'geist-mono-extra-bold': GeistMono_800ExtraBold,
-    // 'geist-mono-black': GeistMono_900Black,
+    'gm-thin': require('@/assets/fonts/GeistMono-Thin.ttf'),
+    'gm-extra-light': require('@/assets/fonts/GeistMono-ExtraLight.ttf'),
+    'gm-light': require('@/assets/fonts/GeistMono-Light.ttf'),
+    'gm-regular': require('@/assets/fonts/GeistMono-Regular.ttf'),
+    'gm-medium': require('@/assets/fonts/GeistMono-Medium.ttf'),
+    'gm-semi-bold': require('@/assets/fonts/GeistMono-SemiBold.ttf'),
+    'gm-bold': require('@/assets/fonts/GeistMono-Bold.ttf'),
+    'gm-extra-bold': require('@/assets/fonts/GeistMono-ExtraBold.ttf'),
+    'gm-black': require('@/assets/fonts/GeistMono-Black.ttf'),
   });
 
   useEffect(() => {
