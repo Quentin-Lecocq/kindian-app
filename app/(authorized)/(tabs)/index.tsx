@@ -16,6 +16,10 @@ export default function Home() {
   const router = useRouter();
   const { data: books, isLoading } = useGetBooks();
 
+  if (isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
   return (
     <SafeAreaView className="flex-1 bg-background">
       <ScrollView showsVerticalScrollIndicator={false} className="p-6">

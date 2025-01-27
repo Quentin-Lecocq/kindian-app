@@ -1,7 +1,8 @@
+import { useAuthSession } from '@/providers/AuthProvider';
 import { supabase } from '@/utils/supabase';
 import { makeRedirectUri } from 'expo-auth-session';
 import * as QueryParams from 'expo-auth-session/build/QueryParams';
-import { Link, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import { Github, GoogleCircle } from 'iconoir-react-native';
 import React from 'react';
@@ -17,17 +18,6 @@ const mobileRedirectUri = makeRedirectUri({
 });
 
 const redirectTo = 'exp://localhost:19000/--/*';
-
-export const useWarmUpBrowser = () => {
-  React.useEffect(() => {
-    // Warm up the android browser to improve UX
-    // https://docs.expo.dev/guides/authentication/#improving-user-experience
-    void WebBrowser.warmUpAsync();
-    return () => {
-      void WebBrowser.coolDownAsync();
-    };
-  }, []);
-};
 
 const createSessionFromUrl = async (url: string) => {
   const { params, errorCode } = QueryParams.getQueryParams(url);
@@ -59,6 +49,7 @@ const sendMagicLink = async () => {
 
 const Login = ({ mode }: LoginProps) => {
   const router = useRouter();
+  const { signIn } = useAuthSession();
   const [emailAddress, setEmailAddress] = React.useState('');
 
   const performOAuth = async (provider: 'google' | 'github') => {
@@ -81,9 +72,13 @@ const Login = ({ mode }: LoginProps) => {
 
     if (res.type === 'success') {
       const { url } = res;
-      await createSessionFromUrl(url);
+      const session = await createSessionFromUrl(url);
+      if (session) {
+        signIn(session.access_token);
+      }
     }
   };
+
   return (
     <View className="flex-1 mx-auto">
       <View>
@@ -144,18 +139,6 @@ const Login = ({ mode }: LoginProps) => {
               </View>
             </TouchableHighlight>
           </View>
-        </View>
-        <View className="flex-row items-center justify-center gap-1">
-          <Text className="font-gm-light text-sm text-muted-foreground">
-            {mode === 'sign-in'
-              ? 'New to Kindian?'
-              : 'Already have an account?'}
-          </Text>
-          <Link href={mode === 'sign-in' ? '/sign-up' : '/sign-in'}>
-            <Text className="font-gm-regular text-sm underline text-foreground">
-              {mode === 'sign-in' ? 'Sign up' : 'Sign in'}
-            </Text>
-          </Link>
         </View>
       </View>
     </View>

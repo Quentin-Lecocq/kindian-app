@@ -1,5 +1,6 @@
 import { config } from '@/constants/iconoir';
 import { SupabaseUserProvider } from '@/contexts/supabase-user-context';
+import AuthProvider from '@/providers/AuthProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
@@ -34,21 +35,19 @@ export default function RootLayout() {
     }
   }, [loaded, error]);
 
-  if (!loaded || error) {
-    return null;
-  }
-
   return (
     <QueryClientProvider client={queryClient}>
       <SupabaseUserProvider>
-        <IconoirProvider iconProps={config}>
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="book/[id]" />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-          <StatusBar style="light" />
-        </IconoirProvider>
+        <AuthProvider>
+          <IconoirProvider iconProps={config}>
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="(tabs)" />
+              <Stack.Screen name="book/[id]" />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+            <StatusBar style="light" />
+          </IconoirProvider>
+        </AuthProvider>
       </SupabaseUserProvider>
     </QueryClientProvider>
   );
