@@ -31,16 +31,19 @@ export const deleteBook = async (bookId: string) => {
 };
 
 export const getBookById = async (bookId: string): Promise<Book> => {
-  try {
-    const { data, error } = await supabase
-      .from('books')
-      .select('*')
-      .eq('id', bookId)
-      .single();
-    if (error) throw error;
-    return data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+  const token = await getAccessToken();
+
+  if (!token) throw new Error('No access token');
+
+  const response = await fetch(`http://localhost:4000/api/books/${bookId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) throw new Error('Book not found');
+
+  const data = await response.json();
+  return data.data;
 };

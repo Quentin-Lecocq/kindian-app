@@ -1,150 +1,46 @@
-import PrimaryButton from '@/components/ui/primary-button';
-import SecondaryButton from '@/components/ui/secondary-button';
-import { BLURHASH } from '@/constants/images';
+import ActionButtons from '@/features/book/components/actions-buttons';
+import BookDescription from '@/features/book/components/book-description';
+import BookDetails from '@/features/book/components/book-details';
+import BookImage from '@/features/book/components/book-image';
+import BookInfo from '@/features/book/components/book-info';
+import Header from '@/features/book/components/header';
 import { useGetBookDetails } from '@/features/books/hooks/use-get-book-details';
-import { Image } from 'expo-image';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import {
-  ArrowLeft,
-  Bell,
-  Bookmark,
-  CloudDownload,
-  Play,
-  Trash,
-} from 'iconoir-react-native';
-import {
-  FlatList,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
+import { SafeAreaView, ScrollView, View } from 'react-native';
 
 const BookDetailScreen = () => {
-  const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { data: book, isLoading } = useGetBookDetails(id);
-
-  // if (isLoading) return <Text>Loading...</Text>;
+  const { data: book } = useGetBookDetails(id);
 
   return (
-    <SafeAreaView className="flex-1 bg-secondary">
-      <View className="border flex-row justify-between items-center h-20">
-        <TouchableOpacity
-          onPress={() => router.back()}
-          className="border-r h-full items-center justify-center flex-row w-20"
-        >
-          <ArrowLeft width={22} height={22} strokeWidth={2} />
-        </TouchableOpacity>
-        <Text
-          numberOfLines={1}
-          ellipsizeMode="tail"
-          className="text-md flex-1 p-4 text-center font-bold font-roboto-mono-semi-bold text-black"
-        >
-          {book?.title}
-        </Text>
-        <View className="border-l h-full items-center justify-center flex-row w-20">
-          <Bell width={22} height={22} strokeWidth={2} />
-        </View>
-      </View>
+    <SafeAreaView className="flex-1 bg-background">
+      <Header title={book?.title || ''} />
       <ScrollView>
         <View className="px-6 py-4 flex-1 gap-4">
           <View className="flex-row gap-4">
-            <View className="border border-black p-1  bg-[#FEEFDB]">
-              <Image
-                source={book?.image_url}
-                style={{ width: 100, height: 140 }}
-                contentFit="fill"
-                contentPosition="center"
-                transition={1000}
-                placeholder={BLURHASH}
-              />
-            </View>
-            <View className="flex-1">
-              <Text className="font-dm-mono-medium text-xl">{book?.title}</Text>
-              <Text className="font-dm-mono-light text-xs">
-                {book?.subtitle}
-              </Text>
-              <Text className="font-roboto-mono-light text-sm">
-                By:{' '}
-                <Text className="font-roboto-mono text-sm text-brown underline">
-                  {book?.author}
-                </Text>
-              </Text>
-              <View className="pt-2">
-                <FlatList
-                  data={book?.categories}
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  renderItem={({ item }) => (
-                    <Text className="font-roboto-mono-light px-2 py-1 text-xs bg-primary">
-                      {item}
-                    </Text>
-                  )}
-                />
-              </View>
-            </View>
+            <BookImage imageUrl={book?.imageUrl || ''} />
+            <BookInfo
+              title={book?.title || ''}
+              subtitle={book?.subtitle || ''}
+              author={book?.author || ''}
+              categories={book?.categories || []}
+            />
           </View>
-          <SecondaryButton
-            label="Read on Google"
-            textCenter
-            onPress={() => {}}
+          <ActionButtons
+            onRead={() => {}}
+            onDownload={() => {}}
+            onSave={() => {}}
+            onDelete={() => {}}
           />
-          <PrimaryButton
-            label="Play Sample"
-            icon={<Play strokeWidth={2} />}
-            onPress={() => {}}
+          <BookDetails
+            pageCount={book?.pageCount || 0}
+            highlightsCount={book?.highlightsCount || 0}
+            bookmarksCount={book?.bookmarksCount || 0}
+            commentsCount={book?.commentsCount || 0}
+            isbn13={book?.isbn13 || ''}
+            publishedDate={book?.publishedDate || ''}
           />
-          <View className="flex-row justify-between h-24">
-            <TouchableOpacity className="flex-1 border items-center justify-center gap-1">
-              <CloudDownload strokeWidth={2} />
-              <Text className="font-roboto-mono-medium text-sm">Download</Text>
-            </TouchableOpacity>
-            <TouchableOpacity className="flex-1 border items-center justify-center gap-1">
-              <Bookmark strokeWidth={2} />
-              <Text className="font-roboto-mono-medium text-sm">Save</Text>
-            </TouchableOpacity>
-            <TouchableOpacity className="flex-1 items-center border justify-center gap-1">
-              <Trash strokeWidth={2} />
-              <Text className="font-roboto-mono-medium text-sm">Delete</Text>
-            </TouchableOpacity>
-          </View>
-          <View className="flex-row gap-4">
-            <View className="w-fit gap-2">
-              <Text className="font-roboto-mono text-sm">Pages</Text>
-              <Text className="font-roboto-mono text-sm">Highlights</Text>
-              <Text className="font-roboto-mono  text-sm">Bookmarks</Text>
-              <Text className="font-roboto-mono text-sm">Comments</Text>
-              <Text className="font-roboto-mono text-sm">ISBN13</Text>
-              <Text className="font-roboto-mono text-sm">Published Date</Text>
-            </View>
-            <View className="flex-1 gap-2">
-              <Text className="font-roboto-mono-semi-bold text-sm">
-                {book?.page_count || '-'}
-              </Text>
-              <Text className="font-roboto-mono-semi-bold text-sm">
-                {book?.highlights_count || '-'}
-              </Text>
-              <Text className="font-roboto-mono-semi-bold text-sm">
-                {book?.bookmarks_count || '-'}
-              </Text>
-              <Text className="font-roboto-mono text-sm">
-                {book?.comments_count || '-'}
-              </Text>
-              <Text className="font-roboto-mono-semi-bold text-sm">
-                {book?.isbn13 || '-'}
-              </Text>
-              <Text className="font-roboto-mono-semi-bold text-sm">
-                {book?.published_date || '-'}
-              </Text>
-            </View>
-          </View>
-          <View className="border-t pt-6 mt-4">
-            <Text className="font-dm-mono leading-6 text-sm">
-              {book?.description}
-            </Text>
-          </View>
+          <BookDescription description={book?.description || ''} />
         </View>
       </ScrollView>
     </SafeAreaView>
