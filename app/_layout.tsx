@@ -41,8 +41,7 @@ export default function RootLayout() {
         <AuthProvider>
           <IconoirProvider iconProps={config}>
             <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="(tabs)" />
-              <Stack.Screen name="book/[id]" />
+              <Stack.Screen name="(authorized)" />
               <Stack.Screen name="+not-found" />
             </Stack>
             <StatusBar style="light" />
